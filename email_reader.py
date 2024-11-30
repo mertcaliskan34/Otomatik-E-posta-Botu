@@ -1,11 +1,18 @@
+import os
 from googleapiclient.discovery import build
 from google.oauth2.credentials import Credentials
 
-# credentials.json dosyasını yükle
-creds = Credentials.from_authorized_user_file('credentials.json', ['https://www.googleapis.com/auth/gmail.readonly'])
+SCOPES = ['https://www.googleapis.com/auth/gmail.readonly']
+
+creds = None
+if os.path.exists('token.json'):
+    creds = Credentials.from_authorized_user_file('token.json', SCOPES)
+else:
+    raise FileNotFoundError("token.json bulunamadı. Yetkilendirme işlemini yeniden yapın.")
+
 service = build('gmail', 'v1', credentials=creds)
 
-# Gelen kutusundaki e-postaları al
+# Gelen e-postaları al
 results = service.users().messages().list(userId='me', maxResults=5).execute()
 messages = results.get('messages', [])
 
