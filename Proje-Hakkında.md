@@ -1,17 +1,17 @@
-### Proje Başlığı
+## Proje Başlığı
 
 Otomatik Cevaplama E-posta Botu
 
-### Proje Amacı
+## Proje Amacı
 
 Gelen e-postaları analiz ederek uygun yanıtları öneren bir otomatik yanıt sistemi oluşturmak. Bu sistem hem zamandan tasarruf sağlamayı hem de müşteri memnuniyetini artırmayı hedeflemektedir.
 
-### Kullanılacak Teknolojiler
+## Kullanılacak Teknolojiler
 
-NLP Modelleri: Doğal Dil İşleme (NLP) kullanarak e-posta metinlerini analiz etme ve doğru yanıtları önerme.
-# Kütüphaneler: Python (NLTK, spaCy, Transformers).
-Veritabanı: MongoDB veya MySQL, e-posta içerikleri ve geri bildirimleri depolamak için kullanılacak.
-E-posta Servisi Entegrasyonu: Gmail API veya Microsoft Graph API ile botun e-posta alışverişini sağlayacak entegrasyon.
+#### NLP Modelleri: Doğal Dil İşleme (NLP) kullanarak e-posta metinlerini analiz etme ve doğru yanıtları önerme.
+#### Kütüphaneler: Python (NLTK, spaCy, Transformers).
+#### Veritabanı: MongoDB veya MySQL, e-posta içerikleri ve geri bildirimleri depolamak için kullanılacak.
+#### E-posta Servisi Entegrasyonu: Gmail API veya Microsoft Graph API ile botun e-posta alışverişini sağlayacak entegrasyon.
 
 ### Proje Özellikleri
 
