@@ -1,6 +1,6 @@
 ## Proje Başlığı
 
-Otomatik Cevaplama E-posta Botu
+Otomatik E-posta Botu
 
 ## Proje Amacı
 
