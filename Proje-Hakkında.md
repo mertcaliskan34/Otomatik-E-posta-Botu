@@ -4,7 +4,7 @@ Otomatik Cevaplama E-posta Botu
 
 ## Proje Amacı
 
-Gelen e-postaları analiz ederek uygun yanıtları öneren bir otomatik yanıt sistemi oluşturmak. Bu sistem hem zamandan tasarruf sağlamayı hem de müşteri memnuniyetini artırmayı hedeflemektedir.
+Bu projenin amacı gelen e-postaları analiz ederek uygun yanıtları öneren bir otomatik yanıt sistemi oluşturmaktır. Bu sistem hem zamandan tasarruf sağlayacak hem de müşteri memnuniyetini arttıracaktır.
 
 ## Kullanılacak Teknolojiler
 
