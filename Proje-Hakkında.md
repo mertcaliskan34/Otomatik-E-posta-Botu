@@ -9,7 +9,7 @@ Gelen e-postaları analiz ederek uygun yanıtları öneren bir otomatik yanıt s
 ### Kullanılacak Teknolojiler
 
 NLP Modelleri: Doğal Dil İşleme (NLP) kullanarak e-posta metinlerini analiz etme ve doğru yanıtları önerme.
-Kütüphaneler: Python (NLTK, spaCy, Transformers).
+# Kütüphaneler: Python (NLTK, spaCy, Transformers).
 Veritabanı: MongoDB veya MySQL, e-posta içerikleri ve geri bildirimleri depolamak için kullanılacak.
 E-posta Servisi Entegrasyonu: Gmail API veya Microsoft Graph API ile botun e-posta alışverişini sağlayacak entegrasyon.
 
