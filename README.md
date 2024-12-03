@@ -11,11 +11,11 @@ Bu projenin amacı gelen e-postaları analiz ederek uygun yanıtları öneren bi
 #### NLP Modelleri:
 Doğal Dil İşleme (NLP) kullanarak e-posta metinlerini analiz etme ve doğru yanıtları önerme.
 #### Kütüphaneler:
-Python (NLTK, spaCy, Transformers).
+Python (google-api-python-client, google-auth-httplib2, google-auth-oauthlib, marimo).
 #### Veritabanı:
 MongoDB veya MySQL, e-posta içerikleri ve geri bildirimleri depolamak için kullanılacak.
 #### E-posta Servisi Entegrasyonu:
-Gmail API veya Microsoft Graph API ile botun e-posta alışverişini sağlayacak entegrasyon.
+Gmail API ile botun e-posta alışverişini sağlayacak entegrasyon.
 
 ## Proje Özellikleri
 
@@ -40,3 +40,17 @@ Sıkça sorulan sorulara uygun yanıt şablonları belirleme.
 E-posta servisleriyle entegrasyon ve kullanıcı arayüzü geliştirme.
 #### Geri Bildirim ve Öğrenme:
 Kullanıcı geri bildirimlerini analiz ederek sistemin iyileştirilmesi.
+
+## Çalıştırma Koşulları
+
+#### Python ile Virtual Environment Oluşturmak ve Onu Aktifleştirmek:
+python -m venv virtual_environment_name
+.\venv\Scripts\activate
+#### Gerekli Kütüphaneleri Yüklemek:
+pip install google-api-python-client google-auth-httplib2 google-auth-oauthlib marimo
+#### Gmail API'yi Aktifleştirmek:
+Google Cloud Console üzerinden APIs & Services sekmesine geçilerek Gmail API kolaylıkla bulunabilir ve aktifleştirilebilir.
+#### Proje Oluşturmak ve Credentials Dosyasını İndirmek:
+Google Cloud Console üzerinden yeni bir proje rahatlıkla oluşturulabilir ve sonrasında Create Credentials sekmesinde OAuth 2.0 Client ID seçeneği seçilerek bir istemci credentials json dosyası oluşturulup sonrasında indirilebilir.
+
+İndirilen bu dosya proje dizinine koyulmalı ve sonrasında create_service.py dosyası çalıştırılarak Gmail API Authentication işlemi yapılmalıdır.
