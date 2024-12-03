@@ -88,5 +88,5 @@ def get_email_message_details(service, msg_id):
         'has_attachments': has_attachments,
         'date': date,
         'star': star,
-        'label': label,
+        'label':label,
     }
