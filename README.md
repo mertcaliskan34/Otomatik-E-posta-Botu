@@ -44,8 +44,7 @@ Kullanıcı geri bildirimlerini analiz ederek sistemin iyileştirilmesi.
 ## Projeyi Çalıştırma Koşulları
 
 #### Python ile Virtual Environment Oluşturmak ve Onu Aktifleştirmek:
-python -m venv virtual_environment_name
-.\venv\Scripts\activate
+python -m venv virtual_environment_name | .\venv\Scripts\activate
 #### Gerekli Kütüphaneleri Yüklemek:
 pip install google-api-python-client google-auth-httplib2 google-auth-oauthlib marimo
 #### Gmail API'yi Aktifleştirmek:
