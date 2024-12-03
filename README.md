@@ -54,4 +54,5 @@ Google Cloud Console üzerinden APIs & Services sekmesine geçilerek Gmail API b
 Google Cloud Console üzerinden yeni bir proje oluşturulmalı ve sonrasında Create Credentials sekmesinde OAuth 2.0 Client ID seçeneği seçilerek bir istemci credentials json dosyası oluşturulup sonrasında indirilmelidir.
 
 İndirilen bu dosya proje dizinine koyulmalı ve sonrasında create_service.py dosyası çalıştırılarak Gmail API Authentication işlemi yapılmalıdır.
+
 Not: Gmail API sadece gmail.com ile biten e-posta adresleri için çalışmaktadır.
