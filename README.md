@@ -41,7 +41,7 @@ E-posta servisleriyle entegrasyon ve kullanıcı arayüzü geliştirme.
 #### Geri Bildirim ve Öğrenme:
 Kullanıcı geri bildirimlerini analiz ederek sistemin iyileştirilmesi.
 
-## Çalıştırma Koşulları
+## Projeyi Çalıştırma Koşulları
 
 #### Python ile Virtual Environment Oluşturmak ve Onu Aktifleştirmek:
 python -m venv virtual_environment_name
