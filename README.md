@@ -55,4 +55,4 @@ Google Cloud Console üzerinden yeni bir proje oluşturulmalı ve sonrasında Cr
 
 İndirilen bu dosya proje dizinine koyulmalı ve sonrasında create_service.py dosyası çalıştırılarak Gmail API Authentication işlemi yapılmalıdır.
 
-Not: Gmail API sadece gmail.com ile biten e-posta adresleri için çalışmaktadır.
+Not: Gmail API sadece sonu "gmail.com" ile biten e-posta adresleri için çalışmaktadır.
