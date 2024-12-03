@@ -44,7 +44,7 @@ folder_name.lower()), None)
             raise ValueError (f"Folder '{folder_name}' not found.")
     
     while True:
-        result = service.users()-messages().list(
+        result = service.users().messages().list(
             userId=user_id,
             labelIds=label_ids,
             maxResults=min(500, max_results - len(messages)) if max_results else 500,
