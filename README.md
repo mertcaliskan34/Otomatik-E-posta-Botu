@@ -49,8 +49,8 @@ Kullanıcı geri bildirimlerini analiz ederek sistemin iyileştirilmesi.
 #### Gerekli Kütüphaneleri Yüklemek:
 pip install google-api-python-client google-auth-httplib2 google-auth-oauthlib marimo
 #### Gmail API'yi Aktifleştirmek:
-Google Cloud Console üzerinden APIs & Services sekmesine geçilerek Gmail API kolaylıkla bulunabilir ve aktifleştirilebilir.
+Google Cloud Console üzerinden APIs & Services sekmesine geçilerek Gmail API bulunmalı ve aktifleştirilmelidir.
 #### Proje Oluşturmak ve Credentials Dosyasını İndirmek:
-Google Cloud Console üzerinden yeni bir proje rahatlıkla oluşturulabilir ve sonrasında Create Credentials sekmesinde OAuth 2.0 Client ID seçeneği seçilerek bir istemci credentials json dosyası oluşturulup sonrasında indirilebilir.
+Google Cloud Console üzerinden yeni bir proje oluşturulmalı ve sonrasında Create Credentials sekmesinde OAuth 2.0 Client ID seçeneği seçilerek bir istemci credentials json dosyası oluşturulup sonrasında indirilmelidir.
 
 İndirilen bu dosya proje dizinine koyulmalı ve sonrasında create_service.py dosyası çalıştırılarak Gmail API Authentication işlemi yapılmalıdır.
