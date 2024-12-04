@@ -1,5 +1,6 @@
 client_secret.json
 token files
+gmail_token.json
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
