@@ -17,4 +17,4 @@ Google Cloud Console üzerinden yeni bir proje oluşturulmalı ve sonrasında Cr
 
 İndirilen bu dosya proje dizinine koyulmalı, ismi 'client_secret' yapılmalı ve sonrasında read_emails.py dosyası çalıştırılarak Gmail API Authentication işlemi yapılmalıdır. Bu işlemden sonra gmail_token.json dosyası proje dizininde oluşturulacaktır, devamında tekrardan read_emails.py dosyası çalıştırıldığında belirtilen tarih aralığındaki e-postalar terminal ekranında görüntülenecektir.
 
-Not: Gmail API sadece sonu "gmail.com" ile biten e-posta adresleri için çalışmaktadır.
+Not: Gmail API sadece sonu 'gmail.com' ile biten e-posta adresleri için çalışmaktadır.
