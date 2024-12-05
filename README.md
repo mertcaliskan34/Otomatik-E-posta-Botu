@@ -53,6 +53,6 @@ Google Cloud Console üzerinden APIs & Services sekmesine geçilerek Gmail API b
 #### Proje Oluşturmak ve Credentials Dosyasını İndirmek:
 Google Cloud Console üzerinden yeni bir proje oluşturulmalı ve sonrasında Create Credentials sekmesinde OAuth 2.0 Client ID seçeneği seçilerek bir istemci credentials json dosyası oluşturulup sonrasında indirilmelidir.
 
-İndirilen bu dosya proje dizinine koyulmalı ve sonrasında create_service.py dosyası çalıştırılarak Gmail API Authentication işlemi yapılmalıdır.
+İndirilen bu dosya proje dizinine koyulmalı, ismi 'client_secret' yapılmalı ve sonrasında create_service.py dosyası çalıştırılarak Gmail API Authentication işlemi yapılmalıdır. Bu işlemden sonra proje dizininde 'token files' isminde bir dosya oluşacaktır. Artık basitçe read_emails.py dosyasını çalıştırabilir ve istediğiniz parametrelere uygun bir şekilde e-postalarınızı görüntüleyebilirsiniz.
 
 Not: Gmail API sadece sonu "gmail.com" ile biten e-posta adresleri için çalışmaktadır.
