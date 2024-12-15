@@ -11,9 +11,9 @@ Bu projenin amacı gelen e-postaları analiz ederek uygun yanıtları öneren bi
 #### NLP Modelleri:
 Doğal Dil İşleme (NLP) kullanarak e-posta metinlerini analiz etme ve doğru yanıtları önerme.
 #### Kütüphaneler:
-Python (google-api-python-client, google-auth-httplib2, google-auth-oauthlib, marimo).
+Python (google-api-python-client, google-auth-httplib2, google-auth-oauthlib, django).
 #### Veritabanı:
-MongoDB veya MySQL, e-posta içerikleri ve geri bildirimleri depolamak için kullanılacak.
+SQLite3, e-posta içerikleri ve geri bildirimleri depolamak için kullanılacak.
 #### E-posta Servisi Entegrasyonu:
 Gmail API ile botun e-posta alışverişini sağlayacak entegrasyon.
 
@@ -40,18 +40,6 @@ Sıkça sorulan sorulara uygun yanıt şablonları belirleme.
 E-posta servisleriyle entegrasyon ve kullanıcı arayüzü geliştirme.
 #### Geri Bildirim ve Öğrenme:
 Kullanıcı geri bildirimlerini analiz ederek sistemin iyileştirilmesi.
-
-## Projeyi Çalıştırma Koşulları
-
-#### Python ile Virtual Environment Oluşturmak ve Onu Aktifleştirmek:
-1) python -m venv virtual_environment_name
-2) .\venv\Scripts\activate
-#### Gerekli Kütüphaneleri Yüklemek:
-pip install google-api-python-client google-auth-httplib2 google-auth-oauthlib marimo
-#### Gmail API'yi Aktifleştirmek:
-Google Cloud Console üzerinden APIs & Services sekmesine geçilerek Gmail API bulunmalı ve aktifleştirilmelidir.
-#### Proje Oluşturmak ve Credentials Dosyasını İndirmek:
-Google Cloud Console üzerinden yeni bir proje oluşturulmalı ve sonrasında Create Credentials sekmesinde OAuth 2.0 Client ID seçeneği seçilerek bir istemci credentials json dosyası oluşturulup sonrasında indirilmelidir.
 
 İndirilen bu dosya proje dizinine koyulmalı, ismi 'client_secret' yapılmalı ve sonrasında create_service.py dosyası çalıştırılarak Gmail API Authentication işlemi yapılmalıdır. Bu işlemden sonra proje dizininde 'token files' isminde bir dosya oluşacaktır. Artık basitçe read_emails.py dosyasını çalıştırabilir ve istediğiniz parametrelere uygun bir şekilde e-postalarınızı görüntüleyebilirsiniz.
 
