@@ -1,0 +1,41 @@
+{% extends "mail_app/temelsayfa.html" %}
+
+{% block content %}
+
+<div class="text-center mb-4">
+    <h1 class="display-4 fw-bold">E-posta Botuna Hoşgeldiniz</h1>
+    <br>
+    <p class="lead text-secondary">
+        Akıllı e-posta yönetimi ile işlerinizi kolaylaştırın. Gmail hesabınıza bağlanarak e-postalarınızı analiz edin ve hızlıca yanıtlayın!
+    </p>
+</div>
+
+<div class="row text-center my-5">
+    <div class="col-md-4">
+        <i class="fa-regular fa-envelope fa-3x"></i>
+        <h3 class="mt-3">E-postaları Analiz Et</h3>
+        <p>E-posta botu, gelen e-postaları otomatik olarak okur ve analiz ederek yanıt önerileri sunar.</p>
+    </div>
+    <div class="col-md-4">
+        <i class="fa-solid fa-laptop-code fa-3x"></i>
+        <h3 class="mt-3">Akıllı Yanıtlar</h3>
+        <p>Makine öğrenmesi desteği ile hızlı ve etkili yanıtlar oluşturun.</p>
+    </div>
+    <div class="col-md-4">
+        <i class="fa-solid fa-shield fa-3x"></i>
+        <h3 class="mt-3">Güvenli Bağlantı</h3>
+        <p>Google'ın güvenli OAuth2 sistemi ile hesabınıza güvenli giriş yapın.</p>
+    </div>
+</div>
+
+{% if not request.session.gmail_authenticated %}
+<div class="text-center my-4">
+    <h4>Başlamak İçin Gmail Hesabınızla Giriş Yapın</h4>
+    <a href="{% url 'google_login' %}" class="btn btn-warning btn-lg mt-3">
+        <i class="bi bi-google"></i> Gmail ile Giriş Yap &nbsp;
+        <i class="fa-brands fa-google"></i>
+    </a>
+</div>
+{% endif %}
+
+{% endblock %}

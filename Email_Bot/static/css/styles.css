@@ -1,0 +1,45 @@
+.nav-item:last-child {
+    margin-left: auto; /* Çıkış butonunu tamamen sağa yasla */
+    padding-right: 0; /* Sağ dolgu sıfırla */
+}
+.nav-item:last-child a {
+    width: calc(100% + 15px); /* Sağdaki boşluğu tamamen doldur */
+    text-align: center; /* Yazıyı ortaya hizala */
+    padding-right: 0; /* Sağdaki ekstra padding'i kaldır */
+}
+.navbar {
+    padding-right: 0; /* Navbar'ın sağındaki genel boşluğu kaldır */
+}
+/* Mobilde navbar öğelerini ortalamak */
+@media (max-width: 768px) {
+    .navbar-nav {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+    
+    .navbar-nav .nav-item {
+        width: 100%;
+        text-align: center;
+    }
+
+    .navbar-toggler {
+        margin-left: auto;
+    }
+}
+@keyframes fadeOut {
+    from {
+        opacity: 1; /* Başlangıçta tamamen görünür */
+    }
+    to {
+        opacity: 0; /* Tamamen soluklaş */
+    }
+}
+.fade-out {
+    animation: fadeOut 20s ease forwards; /* 20 saniyelik solma efekti */
+}
+.email-body {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-size: calc(1rem + 1vw);
+}

@@ -1,0 +1,35 @@
+{% extends "mail_app/temelsayfa.html" %}
+
+{% load custom_filters %}
+
+{% block content %}
+
+<div class="card shadow">
+
+    <div class="card-header bg-primary text-white">
+        <h5 class="mb-1 mt-1 fs-4">E-posta Detayları</h5>
+    </div>
+
+    <div class="card-body">
+        <p class="fs-5"><strong>Kimden:&nbsp;</strong> <span class="text-muted">{{ email.from }}</span></p>
+        <p class="fs-5"><strong>Konu:&nbsp;</strong> <span class="text-muted">{{ email.subject }}</span></p>
+        <p class="fs-5"><strong>Tarih:&nbsp;</strong> <span class="text-muted">{{ email.date }}</span></p>
+        <hr>
+        <p class="fs-5"><strong>Mesaj:</strong></p>
+        <div class="fs-5 email-body">
+            {{ email.body|convert_links|safe }}
+        </div>
+    </div>
+
+    <div class="card-footer d-flex justify-content-between align-items-center">
+        <a href="{% url 'gelen_kutusu' %}" class="btn btn-secondary fs-6">
+            Geri Dön
+        </a>
+        <button class="btn btn-success fs-6">
+            Yanıt Oluştur
+        </button>
+    </div>
+    
+</div>
+
+{% endblock %}
