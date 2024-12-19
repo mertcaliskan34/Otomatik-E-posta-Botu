@@ -28,7 +28,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
     'mail_app',
-    'nlp_app',
 ]
 
 MIDDLEWARE = [
