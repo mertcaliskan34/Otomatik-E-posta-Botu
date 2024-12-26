@@ -1,36 +1,45 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const buttons = document.querySelectorAll(".yanit_olustur");
-    
-    buttons.forEach(button => {
-        button.addEventListener("click", () => {
-            const emailId = button.getAttribute("data-id");
-            alert(`#${emailId} numaralı e-posta için bir yanıt oluştur.`);
-            // Burada bir API çağrısı ya da başka bir işlem yapabilirsin
-        });
-    });
-});
+document.addEventListener("DOMContentLoaded", function () {
+    // DOM Elemanlarını Başlat
+    const alerts = document.querySelectorAll('.alert');
+    const alertCloseButtons = document.querySelectorAll('.btn-close');
+    const replyButtons = document.querySelectorAll(".reply-button");
+    const emailContentInput = document.getElementById('emailContent');
 
-document.addEventListener("DOMContentLoaded", function() {
-    const alerts = document.querySelectorAll('.alert'); // Tüm alert mesajlarını seç
-    
-    alerts.forEach(alert => {
+    // Fade Out Animasyonu (Helper Fonksiyon)
+    const fadeOutAlert = (alert, delay = 20000) => {
         setTimeout(() => {
-            alert.classList.add('fade-out'); // Fade-out animasyonunu ekle
-            setTimeout(() => {
-                alert.style.display = 'none'; // Animasyon bitince tamamen gizle
-            }, 20000); // 20 saniye sonra tamamen kaldır
-        }, 0); // Hemen çalıştır
-    });
-});
+            alert.classList.add('fade-out');
+            alert.addEventListener('transitionend', () => {
+                alert.style.display = 'none';
+            }, { once: true });
+        }, delay);
+    };
 
-document.addEventListener('DOMContentLoaded', function () {
-    // Bootstrap alert'i kapatma işlemi
-    var closeButtons = document.querySelectorAll('.btn-close');
-    closeButtons.forEach(function(button) {
-        button.addEventListener('click', function() {
-            var alertBox = button.closest('.alert');
-            alertBox.classList.remove('show');
-            alertBox.classList.add('fade');
+    // Hata Mesajı Gösterme (Helper Fonksiyon)
+    const showError = (message) => {
+        const errorMessageDiv = document.getElementById('errorMessage');
+        if (errorMessageDiv) {
+            errorMessageDiv.textContent = message;
+            errorMessageDiv.classList.remove('d-none'); // Görünür yap
+            errorMessageDiv.classList.add('show'); // Bootstrap için animasyonlu görünüm
+            setTimeout(() => {
+                errorMessageDiv.classList.remove('show');
+                errorMessageDiv.classList.add('d-none'); // 5 saniye sonra gizle
+            }, 5000);
+        }
+    };
+
+    // Tüm Alertler için Fade-Out Uygula
+    alerts.forEach(alert => fadeOutAlert(alert));
+
+    // Alert Kapatma Düğmeleri
+    alertCloseButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const alertBox = button.closest('.alert');
+            if (alertBox) {
+                alertBox.classList.remove('show');
+                alertBox.classList.add('fade');
+            }
         });
     });
 });

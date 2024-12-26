@@ -38,11 +38,13 @@
                                 </span>
                             </a>
                         </button>                    
-                        <button class="btn btn-success btn-sm yanit_olustur" data-id="{{ forloop.counter }}" style="white-space: nowrap;">
-                            <span class="d-flex align-items-center">
-                                Yanıt Oluştur <i class="fa-solid fa-pen ms-2"></i>
-                            </span>
-                        </button>
+                        <form action="{% url 'reply_page' email.id %}" method="get" style="display: inline;">
+                            <button type="submit" class="btn btn-success btn-sm reply-button">
+                                <span class="d-flex align-items-center">
+                                    Yanıt Oluştur <i class="fa-solid fa-pen ms-2"></i>
+                                </span>
+                            </button>
+                        </form>                                        
                     </div>
                 </td>                                          
             </tr>
