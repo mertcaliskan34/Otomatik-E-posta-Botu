@@ -15,6 +15,6 @@ def convert_links(value):
     # URL'leri <a> etiketiyle değiştir
     return re.sub(
         url_pattern,
-        r'<a href="\1" target="_blank">\1</a>',
+        '',
         escaped_value
     )
