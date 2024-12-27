@@ -1,20 +1,26 @@
 from django import template
 import re
-from django.utils.html import escape
+from bs4 import BeautifulSoup
 
 register = template.Library()
 
 @register.filter
-def convert_links(value):
-    # Önce gelen değeri olası kötü HTML'den temizle (escape)
-    escaped_value = escape(value)
+def clean_email_body(value):
+    """
+    Email body içindeki HTML kodlarını ve URL'leri temizler,
+    yalnızca anlamlı metni döner.
+    """
+    # HTML'i temizlemek için BeautifulSoup kullanıyoruz
+    soup = BeautifulSoup(value, "html.parser")
     
-    # URL'leri tespit etmek için regex
-    url_pattern = r'(https?://[^\s]+)'
+    # HTML etiketlerini kaldır
+    cleaned_text = soup.get_text(separator=" ")
     
-    # URL'leri <a> etiketiyle değiştir
-    return re.sub(
-        url_pattern,
-        '',
-        escaped_value
-    )
+    # URL'leri kaldır
+    url_pattern = r'(https?://[^\s]+|www\.[^\s]+)'
+    cleaned_text = re.sub(url_pattern, '', cleaned_text)
+    
+    # Gereksiz boşlukları temizle
+    cleaned_text = re.sub(r'\s+', ' ', cleaned_text).strip()
+    
+    return cleaned_text

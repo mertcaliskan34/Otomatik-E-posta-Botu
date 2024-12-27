@@ -17,7 +17,7 @@
         <hr>
         <p class="fs-5"><strong>Mesaj:</strong></p>
         <div class="fs-5 email-body">
-            {{ email.body|convert_links|safe }}
+            {{ email.body|clean_email_body|safe }}
         </div>
     </div>
 

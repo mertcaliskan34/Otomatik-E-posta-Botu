@@ -9,7 +9,7 @@
 
     <div class="mb-3">
         <label for="emailContent" class="form-label">E-posta İçeriği</label>
-        <textarea id="emailContent" class="form-control" rows="6">{{ email.body|convert_links|safe }}</textarea>
+        <textarea id="emailContent" class="form-control" rows="6">{{ email.body|clean_email_body|safe }}</textarea>
     </div>
 
     <button id="generateReplyButton" class="btn btn-primary">Yanıtı Oluştur</button>
