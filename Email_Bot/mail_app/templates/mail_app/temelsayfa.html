@@ -21,15 +21,15 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'fast_reply' %}"> &nbsp; Hızlı Yanıt Oluştur
+                            &nbsp; <i class="fa-solid fa-reply-all"></i> &nbsp;
+                        </a>
+                    </li>
                     {% if request.session.gmail_authenticated %}
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'gelen_kutusu' %}"> &nbsp; Gelen Kutusu
                             &nbsp; <i class="fa-solid fa-square-envelope"></i> &nbsp;
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url '' %}"> &nbsp; Yanıt Önerileri
-                            &nbsp; <i class="fa-solid fa-reply-all"></i> &nbsp;
                         </a>
                     </li>
                     <li class="nav-item">

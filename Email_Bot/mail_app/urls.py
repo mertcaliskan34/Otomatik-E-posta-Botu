@@ -10,6 +10,8 @@ urlpatterns = [
     
     path('reply/<str:email_id>/', views.reply_page, name="reply_page"),
     
+    path('fast-reply/', views.fast_reply, name='fast_reply'),
+    
     path('google-login/', views.google_login, name="google_login"),
     
     path('logout/', views.google_logout, name="logout")

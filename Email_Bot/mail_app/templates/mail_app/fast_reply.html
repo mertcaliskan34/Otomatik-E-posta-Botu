@@ -5,11 +5,11 @@
 {% block content %}
 
 <div class="container mt-4">
-    <h2 class="mb-4">Yanıt Oluştur</h2>
+    <h2 class="mb-4">Hızlı Yanıt Oluştur</h2>
 
     <div class="mb-3">
         <label for="emailContent" class="form-label">E-posta İçeriği</label>
-        <textarea id="emailContent" class="form-control" rows="6">{{ email.body|convert_links|safe }}</textarea>
+        <textarea id="emailContent" class="form-control" rows="6"></textarea>
     </div>
 
     <button id="generateReplyButton" class="btn btn-primary">Yanıtı Oluştur</button>
@@ -19,7 +19,7 @@
         <textarea id="generatedReply" class="form-control" rows="6"></textarea>
     </div>
 
-    <a href="{% url 'gelen_kutusu' %}" class="btn btn-secondary mt-3">Geri Dön</a>
+    <a href="{% url '' %}" class="btn btn-secondary mt-3">Anasayfaya Dön</a>
 </div>
 
 {% endblock %}

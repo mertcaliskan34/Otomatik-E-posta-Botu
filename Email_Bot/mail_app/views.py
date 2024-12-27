@@ -3,7 +3,6 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from .gmail_api import gmail_authenticate, list_messages, is_user_authenticated, get_email_details
 from django.contrib import messages
-import torch
 import json
 
 # Yardımcı Fonksiyon: Gmail Doğrulama
@@ -79,3 +78,7 @@ def reply_page(request, email_id):
     except Exception as e:
         messages.error(request, f"Bir hata oluştu: {e}")
         return redirect('gelen_kutusu')
+
+# Hızlı Yanıt Sayfası
+def fast_reply(request):
+    return render(request, 'mail_app/fast_reply.html')
