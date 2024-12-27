@@ -3,9 +3,9 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from .gmail_api import gmail_authenticate, list_messages, is_user_authenticated, get_email_details
 from django.contrib import messages
-import torch
+#import torch
 import json
-
+from .email_reply_generator import generate_reply
 # Yardımcı Fonksiyon: Gmail Doğrulama
 def get_authenticated_service():
     try:
@@ -79,3 +79,21 @@ def reply_page(request, email_id):
     except Exception as e:
         messages.error(request, f"Bir hata oluştu: {e}")
         return redirect('gelen_kutusu')
+
+
+def generate_reply_view(request):
+    if request.method == 'POST':
+        try:
+            # Gelen POST verisini JSON olarak yükle
+            data = json.loads(request.body)
+            email_text = data.get('emailContent', '')
+            
+            # Yanıt oluştur
+            reply = generate_reply(email_text)
+            return JsonResponse({'success': True, 'reply': reply})
+        except json.JSONDecodeError:
+            return JsonResponse({'success': False, 'error': 'Invalid JSON format'}, status=400)
+        except Exception as e:
+            return JsonResponse({'success': False, 'error': str(e)}, status=500)
+
+    return JsonResponse({'success': False, 'error': 'Only POST method allowed'}, status=405)

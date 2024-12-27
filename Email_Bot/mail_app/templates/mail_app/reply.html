@@ -3,6 +3,9 @@
 {% load custom_filters %}
 
 {% block content %}
+{% load static %}
+{% csrf_token %}
+<script src="{% static 'js/reply.js' %}"></script>
 
 <div class="container mt-4">
     <h2 class="mb-4">Yanıt Oluştur</h2>
