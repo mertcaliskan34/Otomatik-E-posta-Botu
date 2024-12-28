@@ -8,7 +8,9 @@ urlpatterns = [
     
     path('gelen-kutusu/<str:email_id>/', views.email_details, name="email_details"),
     
-    path('reply/<str:email_id>/', views.reply_page, name="reply_page"),
+    path('reply-page/<str:email_id>/', views.reply_page, name="reply_page"),
+    
+    path('send-reply/<str:email_id>/', views.send_reply, name='send_reply'),
     
     path('fast-reply/', views.fast_reply, name='fast_reply'),
     

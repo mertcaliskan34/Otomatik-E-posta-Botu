@@ -1,9 +1,11 @@
 import os
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
-from .gmail_api import gmail_authenticate, list_messages, is_user_authenticated, get_email_details
+from .gmail_api import gmail_authenticate, list_messages, is_user_authenticated
+from .gmail_api import get_email_details, send_email
 from django.contrib import messages
 import json
+import re
 
 # Yardımcı Fonksiyon: Gmail Doğrulama
 def get_authenticated_service():
@@ -82,3 +84,41 @@ def reply_page(request, email_id):
 # Hızlı Yanıt Sayfası
 def fast_reply(request):
     return render(request, 'mail_app/fast_reply.html')
+
+# E-posta Adresini Ayıklama
+def extract_email_address(email_string):
+    """
+    E-posta adresini metinden ayıkla.
+    Örn: 'John Doe <john.doe@example.com>' -> 'john.doe@example.com'
+    """
+    match = re.search(r'[\w\.-]+@[\w\.-]+', email_string)
+    return match.group(0) if match else email_string
+
+# Yanıt Gönderme İşlemi
+def send_reply(request, email_id):
+    service = gmail_authenticate()
+    email = get_email_details(service, email_id)
+
+    if not email:
+        messages.error(request, 'E-posta bilgileri alınamadı.')
+        return redirect('gelen_kutusu')
+
+    print(f"E-posta Detayları: {email}")  # DEBUG
+
+    if request.method == 'POST':
+        reply_content = request.POST.get('generatedReply')
+        print(f"Oluşturulan Yanıt: {reply_content}")  # DEBUG
+
+        if reply_content:
+            to_address = extract_email_address(email['from'])  # E-posta adresini ayıkla
+            try:
+                send_email(service, to_address, f"Re: {email['subject']}", reply_content)
+                messages.success(request, 'Yanıt başarılı bir şekilde gönderildi.')
+                return redirect('gelen_kutusu')
+            except Exception as e:
+                print(f"Email gönderim hatası: {e}")  # DEBUG
+                messages.error(request, f'Bir hata oluştu: {e}')
+        else:
+            messages.error(request, 'Yanıt içeriği boş olamaz.')
+
+    return render(request, 'mail_app/reply.html', {'email': email})

@@ -23,4 +23,7 @@ def clean_email_body(value):
     # Gereksiz boşlukları temizle
     cleaned_text = re.sub(r'\s+', ' ', cleaned_text).strip()
     
+    # "[ Virus-free." ifadesini boş bir stringle değiştir
+    cleaned_text = re.sub(r'\[ Virus-free\.', '', cleaned_text)
+    
     return cleaned_text

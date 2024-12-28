@@ -5,8 +5,14 @@ import pickle
 import os
 import base64
 from datetime import datetime
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from googleapiclient.errors import HttpError
 
-SCOPES = ['https://www.googleapis.com/auth/gmail.readonly']
+SCOPES = [
+    'https://www.googleapis.com/auth/gmail.readonly',
+    'https://www.googleapis.com/auth/gmail.send'
+]
 
 def gmail_authenticate():
     creds = None
@@ -32,7 +38,9 @@ def decode_base64url(encoded_text):
     return decoded_bytes.decode('utf-8')
 
 def list_messages(service, user_id='me'):
-    results = service.users().messages().list(userId=user_id, maxResults=10).execute()
+    # Gönderilen e-postaları hariç tutmak için Gmail API sorgusu
+    query = "-from:me"
+    results = service.users().messages().list(userId=user_id, maxResults=10, q=query).execute()
     messages = results.get('messages', [])
     emails = []
     
@@ -94,3 +102,20 @@ def get_email_details(service, message_id, user_id='me'):
     email_data['body'] = body
     
     return email_data
+
+def send_email(service, to, subject, body):
+    message = MIMEMultipart()
+    message['to'] = to
+    message['subject'] = subject
+    msg = MIMEText(body)
+    message.attach(msg)
+
+    raw_message = base64.urlsafe_b64encode(message.as_bytes()).decode('utf-8')
+
+    try:
+        message = service.users().messages().send(userId='me', body={'raw': raw_message}).execute()
+        print(f'Message Id: {message["id"]}')
+        return message
+    except HttpError as error:
+        print(f'An error occurred: {error}')
+        return None

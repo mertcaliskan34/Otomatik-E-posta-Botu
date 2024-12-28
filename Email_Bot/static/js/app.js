@@ -1,11 +1,14 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // DOM Elemanlarını Başlat
+    // === DOM Elemanları ===
     const alerts = document.querySelectorAll('.alert');
     const alertCloseButtons = document.querySelectorAll('.btn-close');
-    const replyButtons = document.querySelectorAll(".reply-button");
+    const replyForm = document.querySelector('form');
     const emailContentInput = document.getElementById('emailContent');
+    const generatedReply = document.getElementById('generatedReply');
 
-    // Fade Out Animasyonu (Helper Fonksiyon)
+    // === Helper Fonksiyonlar ===
+
+    // Fade Out Animasyonu
     const fadeOutAlert = (alert, delay = 20000) => {
         setTimeout(() => {
             alert.classList.add('fade-out');
@@ -15,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }, delay);
     };
 
-    // Hata Mesajı Gösterme (Helper Fonksiyon)
+    // Hata Mesajı Gösterme
     const showError = (message) => {
         const errorMessageDiv = document.getElementById('errorMessage');
         if (errorMessageDiv) {
@@ -29,17 +32,45 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     };
 
+    // === İşlevler ===
+
     // Tüm Alertler için Fade-Out Uygula
-    alerts.forEach(alert => fadeOutAlert(alert));
+    const initializeAlerts = () => {
+        alerts.forEach(alert => fadeOutAlert(alert));
+    };
 
     // Alert Kapatma Düğmeleri
-    alertCloseButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const alertBox = button.closest('.alert');
-            if (alertBox) {
-                alertBox.classList.remove('show');
-                alertBox.classList.add('fade');
-            }
+    const initializeAlertCloseButtons = () => {
+        alertCloseButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const alertBox = button.closest('.alert');
+                if (alertBox) {
+                    alertBox.classList.remove('show');
+                    alertBox.classList.add('fade');
+                }
+            });
         });
-    });
+    };
+
+    // Form Doğrulama
+    const initializeReplyFormValidation = () => {
+        if (replyForm && generatedReply) {
+            replyForm.addEventListener('submit', function (event) {
+                if (!generatedReply.value.trim()) {
+                    event.preventDefault(); // Form gönderimini engelle
+                    showError('Yanıt içeriği boş olamaz.');
+                }
+            });
+        }
+    };
+
+    // === Başlatıcılar ===
+    const initializeApp = () => {
+        initializeAlerts();
+        initializeAlertCloseButtons();
+        initializeReplyFormValidation();
+    };
+
+    // Uygulamayı Başlat
+    initializeApp();
 });
