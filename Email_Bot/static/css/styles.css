@@ -33,15 +33,15 @@
 
 @keyframes fadeOut {
     from {
-        opacity: 1; /* Başlangıçta tamamen görünür */
+        opacity: 1;
     }
     to {
-        opacity: 0; /* Tamamen soluklaş */
+        opacity: 0;
     }
 }
 
 .fade-out {
-    animation: fadeOut 20s ease forwards; /* 20 saniyelik solma efekti */
+    animation: fadeOut 15s ease forwards;
 }
 
 .email-body {
