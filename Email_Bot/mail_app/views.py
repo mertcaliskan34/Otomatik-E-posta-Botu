@@ -6,6 +6,9 @@ from .gmail_api import get_email_details, send_email
 from django.contrib import messages
 import json
 import re
+from .email_reply_generator import generate_llama
+from django.views.decorators.http import require_POST
+import logging
 
 # Yardımcı Fonksiyon: Gmail Doğrulama
 def get_authenticated_service():
@@ -122,3 +125,33 @@ def send_reply(request, email_id):
             messages.error(request, 'Yanıt içeriği boş olamaz.')
 
     return render(request, 'mail_app/reply.html', {'email': email})
+
+# Yanıt Oluşturma API
+logger = logging.getLogger(__name__)
+
+@require_POST
+def generate_reply(request):
+    try:
+        # Gelen POST verisini JSON olarak yükle
+        data = json.loads(request.body)
+        logger.debug(f"Received request body: {data}")
+
+        # Veri tipini kontrol et: Verinin bir dict (sözlük) olup olmadığını kontrol et
+        if not isinstance(data, dict):
+            return JsonResponse({'success': False, 'error': 'Expected JSON object, but received a different format'}, status=400)
+
+        email_text = data.get('emailContent')
+        
+        # emailContent alanı zorunlu
+        if not email_text:
+            return JsonResponse({'success': False, 'error': 'emailContent is required'}, status=400)
+
+        # Yanıt oluştur
+        reply = generate_llama(email_text)
+        return JsonResponse({'success': True, 'reply': reply})
+
+    except json.JSONDecodeError:
+        return JsonResponse({'success': False, 'error': 'Invalid JSON format'}, status=400)
+    except Exception as e:
+        logger.error(f"An unexpected error occurred: {e}")
+        return JsonResponse({'success': False, 'error': 'Internal server error'}, status=500)

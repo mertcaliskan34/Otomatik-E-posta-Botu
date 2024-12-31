@@ -16,5 +16,7 @@ urlpatterns = [
     
     path('google-login/', views.google_login, name="google_login"),
     
-    path('logout/', views.google_logout, name="logout")
+    path('logout/', views.google_logout, name="logout"),
+    
+    path('generate-reply/', views.generate_reply, name='generate_reply')
 ]
