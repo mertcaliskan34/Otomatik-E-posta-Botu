@@ -6,7 +6,7 @@ from .gmail_api import get_email_details, send_email
 from django.contrib import messages
 import json
 import re
-from .email_reply_generator import generate_llama
+from .email_generator import generate_llama
 from django.views.decorators.http import require_POST
 import logging
 
