@@ -4,10 +4,9 @@ from langchain_core.prompts import ChatPromptTemplate
 def generate_llama(email_text):
     template = """
     Write an answer for the email below in the language it is written.
-    Email:{email}
-    Answer:
+    Email: {email}
     """
-    model = OllamaLLM(model="llama3")
+    model = OllamaLLM(model="llama3.2:1b")
     prompt = ChatPromptTemplate.from_template(template)
     chain = prompt | model
     result = chain.invoke({"email": email_text})
