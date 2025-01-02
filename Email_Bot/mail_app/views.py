@@ -106,12 +106,8 @@ def send_reply(request, email_id):
         messages.error(request, 'E-posta bilgileri alınamadı.')
         return redirect('gelen_kutusu')
 
-    print(f"E-posta Detayları: {email}")  # DEBUG
-
     if request.method == 'POST':
         reply_content = request.POST.get('generatedReply')
-        print(f"Oluşturulan Yanıt: {reply_content}")  # DEBUG
-
         if reply_content:
             to_address = extract_email_address(email['from'])  # E-posta adresini ayıkla
             try:
@@ -119,7 +115,6 @@ def send_reply(request, email_id):
                 messages.success(request, 'Yanıt başarılı bir şekilde gönderildi.')
                 return redirect('gelen_kutusu')
             except Exception as e:
-                print(f"Email gönderim hatası: {e}")  # DEBUG
                 messages.error(request, f'Bir hata oluştu: {e}')
         else:
             messages.error(request, 'Yanıt içeriği boş olamaz.')
@@ -144,7 +139,7 @@ def generate_reply(request):
         
         # emailContent alanı zorunlu
         if not email_text:
-            return JsonResponse({'success': False, 'error': 'emailContent is required'}, status=400)
+            return JsonResponse({'success': False, 'error': 'Missing required field: emailContent'}, status=400)
 
         # Yanıt oluştur
         reply = generate_llama(email_text)
