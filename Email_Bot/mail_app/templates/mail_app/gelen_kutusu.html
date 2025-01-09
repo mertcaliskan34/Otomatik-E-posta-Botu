@@ -12,6 +12,7 @@
                 <th>Konu</th>
                 <th>Durum</th>
                 <th>Tarih</th>
+                <th>Duygudurum</th>
                 <th>İşlem</th>
             </tr>
         </thead>
@@ -29,6 +30,15 @@
                     {% endif %}
                 </td>
                 <td>{{ email.date }}</td>
+                <td>
+                    {% if email.sentiment == "happy" %}
+                        😊
+                    {% elif email.sentiment == "angry" %}
+                        😠
+                    {% elif email.sentiment == "neutral" %}
+                        😐
+                    {% endif %}
+                </td>
                 <td>
                     <div class="d-flex gap-2">
                         <button class="btn btn-secondary btn-sm detaylar">

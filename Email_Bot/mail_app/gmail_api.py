@@ -8,6 +8,7 @@ from datetime import datetime
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from googleapiclient.errors import HttpError
+from .sentiment_analysis import analyze_sentiment
 
 SCOPES = [
     'https://www.googleapis.com/auth/gmail.readonly',
@@ -64,6 +65,29 @@ def list_messages(service, user_id='me'):
         internal_date = int(msg['internalDate']) / 1000  # ms to seconds
         email_data['date'] = datetime.utcfromtimestamp(internal_date).strftime('%d/%m/%Y')
         
+        # Gövdeyi al ve decode et
+        parts = payload.get('parts', [])
+        body = ''
+        if parts:
+            for part in parts:
+                if part.get('mimeType') == 'text/plain':
+                    data = part.get('body', {}).get('data', '')
+                    if data:
+                        # Base64URL decode işlemi
+                        body = base64.urlsafe_b64decode(data).decode('utf-8')
+                        break
+        else:
+            # Eğer 'parts' yoksa direkt payload body'yi al
+            data = payload.get('body', {}).get('data', '')
+            if data:
+                body = base64.urlsafe_b64decode(data).decode('utf-8')
+
+        email_data['body'] = body
+        
+        # Gövde boş değilse duygu analizi yap
+        sentiment = analyze_sentiment(body) if body else "neutral"
+        email_data['sentiment'] = sentiment
+        
         emails.append(email_data)
         
     return emails
@@ -93,6 +117,7 @@ def get_email_details(service, message_id, user_id='me'):
                 if data:
                     # Base64URL decode işlemi
                     body = base64.urlsafe_b64decode(data).decode('utf-8')
+                    break
     else:
         # Eğer 'parts' yoksa direkt payload body'yi al
         data = payload.get('body', {}).get('data', '')
