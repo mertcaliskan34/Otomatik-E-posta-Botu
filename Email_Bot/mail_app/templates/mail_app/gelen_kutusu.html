@@ -31,10 +31,14 @@
                 </td>
                 <td>{{ email.date }}</td>
                 <td>
-                    {% if email.sentiment == "happy" %}
+                    {% if email.sentiment == "very happy" %}
+                        😄
+                    {% elif email.sentiment == "happy" %}
                         😊
                     {% elif email.sentiment == "angry" %}
                         😠
+                    {% elif email.sentiment == "very angry" %}
+                        😡
                     {% elif email.sentiment == "neutral" %}
                         😐
                     {% endif %}
