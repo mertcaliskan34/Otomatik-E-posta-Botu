@@ -24,3 +24,16 @@ def analyze_sentiment(email_text):
         return "very angry"
     else:
         return "neutral"
+    
+def calculate_polarity(email_text):
+    # Clean the email body
+    email_text = clean_email_body(email_text)
+    
+    # Translate the email text to English
+    translated_text = GoogleTranslator(source='auto', target='en').translate(email_text)
+    
+    # Perform sentiment analysis on the translated text
+    analysis = TextBlob(translated_text)
+    polarity = analysis.sentiment.polarity
+
+    return polarity
