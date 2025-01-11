@@ -20,7 +20,7 @@ def get_authenticated_service():
 # Anasayfa Görüntüleme
 def homepage(request):
     request.session['gmail_authenticated'] = is_user_authenticated()
-    return render(request, 'mail_app/anasayfa.html')
+    return render(request, 'mail_app/home_page.html')
 
 # Gmail Giriş İşlemi
 def google_login(request):
@@ -28,7 +28,7 @@ def google_login(request):
         service = gmail_authenticate()
         request.session['gmail_authenticated'] = True
         messages.success(request, "Başarıyla giriş yaptınız.")
-        return redirect('gelen_kutusu')
+        return redirect('inbox_page')
     except Exception as e:
         messages.error(request, f"Bir hata oluştu: {e}")
         return redirect('')
@@ -54,7 +54,7 @@ def inboxpage(request):
         return redirect('')
 
     emails = list_messages(service)
-    return render(request, 'mail_app/gelen_kutusu.html', {'emails': emails})
+    return render(request, 'mail_app/inbox_page.html', {'emails': emails})
 
 # E-posta Detayları
 def email_details(request, email_id):
@@ -76,13 +76,13 @@ def reply_page(request, email_id):
         service = get_authenticated_service()
         if not service:
             messages.error(request, "Gmail hizmetine bağlanılamadı.")
-            return redirect('gelen_kutusu')
+            return redirect('inbox_page')
 
         email = get_email_details(service, email_id)
         return render(request, 'mail_app/reply.html', {'email': email})
     except Exception as e:
         messages.error(request, f"Bir hata oluştu: {e}")
-        return redirect('gelen_kutusu')
+        return redirect('inbox_page')
 
 # Hızlı Yanıt Sayfası
 def fast_reply(request):
@@ -104,7 +104,7 @@ def send_reply(request, email_id):
 
     if not email:
         messages.error(request, 'E-posta bilgileri alınamadı.')
-        return redirect('gelen_kutusu')
+        return redirect('inbox_page')
 
     if request.method == 'POST':
         reply_content = request.POST.get('generatedReply')
@@ -113,7 +113,7 @@ def send_reply(request, email_id):
             try:
                 send_email(service, to_address, f"Re: {email['subject']}", reply_content)
                 messages.success(request, 'Yanıt başarılı bir şekilde gönderildi.')
-                return redirect('gelen_kutusu')
+                return redirect('inbox_page')
             except Exception as e:
                 messages.error(request, f'Bir hata oluştu: {e}')
         else:

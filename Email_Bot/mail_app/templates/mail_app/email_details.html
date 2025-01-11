@@ -1,4 +1,4 @@
-{% extends "mail_app/temelsayfa.html" %}
+{% extends "mail_app/layout.html" %}
 
 {% load custom_filters %}
 
@@ -22,7 +22,7 @@
     </div>
 
     <div class="card-footer d-flex justify-content-between align-items-center">
-        <a href="{% url 'gelen_kutusu' %}" class="btn btn-secondary fs-6">
+        <a href="{% url 'inbox_page' %}" class="btn btn-secondary fs-6">
             Geri Dön
         </a>
         <a href="{% url 'reply_page' email.id %}" class="btn btn-success reply-button">
