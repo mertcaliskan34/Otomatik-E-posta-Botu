@@ -13,8 +13,9 @@ def generate_llama(email_text):
     Note that this example reply must be in the same language as the email.
     
     Check the sentiment score of the email: {sentiment_score} and adjust the tone accordingly.
-    If the sentiment score is positive, maintain a positive and friendly tone.
-    If the sentiment score is negative, be empathetic and understanding.
+    If the sentiment score is between 0.10 and 1, maintain a positive and friendly tone.
+    If the sentiment score is between -0.10 and 0.10, maintain a neutral tone.
+    If the sentiment score is between -1 and -0.10, be empathetic and understanding.
     Don't include the sentiment score in the reply.
     
     Please don't include your analysis in the reply. I just want the example reply.
