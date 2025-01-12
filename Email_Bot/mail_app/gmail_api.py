@@ -38,13 +38,18 @@ def decode_base64url(encoded_text):
     decoded_bytes = base64.urlsafe_b64decode(encoded_text + '==')
     return decoded_bytes.decode('utf-8')
 
-def list_messages(service, user_id='me'):
+def list_messages(service, user_id='me', page_token=None, max_results=10):
     # Gönderilen e-postaları hariç tutmak için Gmail API sorgusu
     query = "-from:me"
-    results = service.users().messages().list(userId=user_id, maxResults=10, q=query).execute()
-    messages = results.get('messages', [])
-    emails = []
+    if page_token:
+        results = service.users().messages().list(userId=user_id, maxResults=max_results, q=query, pageToken=page_token).execute()
+    else:
+        results = service.users().messages().list(userId=user_id, maxResults=max_results, q=query).execute()
     
+    messages = results.get('messages', [])
+    next_page_token = results.get('nextPageToken')
+    
+    emails = []
     for message in messages:
         msg = service.users().messages().get(userId=user_id, id=message['id']).execute()
         payload = msg['payload']
@@ -56,13 +61,13 @@ def list_messages(service, user_id='me'):
                 email_data['from'] = header['value']
             if header['name'] == 'Subject':
                 email_data['subject'] = header['value']
-                
+        
         # Durum (Okunmadı / Okundu)
         labels = msg['labelIds']
         email_data['status'] = 'Okunmadı' if 'UNREAD' in labels else 'Okundu'
         
         # Tarih
-        internal_date = int(msg['internalDate']) / 1000  # ms to seconds
+        internal_date = int(msg['internalDate']) / 1000 # ms to seconds
         email_data['date'] = datetime.utcfromtimestamp(internal_date).strftime('%d/%m/%Y')
         
         # Gövdeyi al ve decode et
@@ -84,13 +89,13 @@ def list_messages(service, user_id='me'):
 
         email_data['body'] = body
         
-        # Gövde boş değilse duygu analizi yap
+        # E-posta duygusunu analiz et
         sentiment = analyze_sentiment(body) if body else "neutral"
         email_data['sentiment'] = sentiment
         
         emails.append(email_data)
         
-    return emails
+    return emails, next_page_token
 
 def get_email_details(service, message_id, user_id='me'): 
     message = service.users().messages().get(userId=user_id, id=message_id).execute()

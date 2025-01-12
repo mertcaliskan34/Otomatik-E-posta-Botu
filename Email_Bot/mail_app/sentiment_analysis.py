@@ -6,6 +6,10 @@ def analyze_sentiment(email_text):
     # Clean the email body
     email_text = clean_email_body(email_text)
     
+    # Truncate the email text to 4999 characters
+    if len(email_text) > 4999:
+        email_text = email_text[:4999]
+    
     # Translate the email text to English
     translated_text = GoogleTranslator(source='auto', target='en').translate(email_text)
     

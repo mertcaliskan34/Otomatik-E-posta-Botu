@@ -53,8 +53,22 @@ def inboxpage(request):
         messages.error(request, "Gmail hizmetine bağlanılamadı.")
         return redirect('')
 
-    emails = list_messages(service)
-    return render(request, 'mail_app/inbox_page.html', {'emails': emails})
+    page_token = request.GET.get('page_token')
+    prev_page_token = request.GET.get('prev_page_token')
+    
+    # Ensure page_token is None if it is 'None' or empty
+    if page_token == 'None' or not page_token:
+        page_token = None
+    
+    emails, next_page_token = list_messages(service, page_token=page_token)
+    
+    context = {
+        'emails': emails,
+        'next_page_token': next_page_token,
+        'prev_page_token': prev_page_token,
+        'current_page_token': page_token,
+    }
+    return render(request, 'mail_app/inbox_page.html', context)
 
 # E-posta Detayları
 def email_details(request, email_id):
