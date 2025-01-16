@@ -7,6 +7,7 @@ def generate_llama(email_text):
     sentiment_score = calculate_polarity(email_text)
     
     template = """
+    You are an automated response bot and your duty is to:
     Analyze the content, tone, and intent of the email below and
     write an example reply, ensuring it aligns with the context,
     addresses all necessary points, and uses a tone suitable for the situation.
