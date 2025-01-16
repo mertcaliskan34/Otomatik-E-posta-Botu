@@ -1,6 +1,6 @@
 ## Proje Başlığı
 
-Otomatik E-posta Botu
+CleverRespond Otomatik Cevaplama E-posta Botu 
 
 ## Proje Amacı
 
