@@ -85,8 +85,8 @@ CleverRespond/
 ### Installation
 
 1. **Clone the repository**
-        ```bash
-   git clone https://github.com/yourusername/CleverRespond.git
+   ```bash
+   git clone https://github.com/mertcaliskan34/CleverRespond.git
    cd CleverRespond
    ```
 
@@ -241,6 +241,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Star this repository if you found it helpful!**
 
-Made with love by [Your Name]
+Made with love by [Mert Çalışkan]
 
 </div>
