@@ -9,7 +9,6 @@
 
 **An intelligent email management platform that leverages AI to analyze, understand, and automatically generate contextual email responses.**
 
-[![Live Demo](https://img.shields.io/badge/Live%20Demo-Available-brightgreen?style=for-the-badge)](https://github.com/yourusername/CleverRespond)
 [![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)](LICENSE)
 
 </div>
