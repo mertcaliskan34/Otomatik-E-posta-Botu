@@ -60,18 +60,18 @@
 
 ```
 CleverRespond/
-├── Email_Bot/                 # Django project root
-│   ├── mail_app/             # Main application
-│   │   ├── views.py         # Business logic & API endpoints
-│   │   ├── models.py        # Data models
-│   │   ├── gmail_api.py     # Gmail API integration
-│   │   ├── email_generator.py # AI response generation
+├── Email_Bot/                    # Django project root
+│   ├── mail_app/                 # Main application
+│   │   ├── views.py              # Business logic & API endpoints
+│   │   ├── models.py             # Data models
+│   │   ├── gmail_api.py          # Gmail API integration
+│   │   ├── email_generator.py    # AI response generation
 │   │   ├── sentiment_analysis.py # Sentiment analysis
-│   │   └── templates/       # HTML templates
-│   ├── static/              # CSS, JS, assets
-│   └── settings.py         # Django configuration
-├── requirements.txt         # Dependencies
-└── README.md               # Documentation
+│   │   └── templates/            # HTML templates
+│   ├── static/                   # CSS, JS, assets
+│   └── settings.py               # Django configuration
+├── requirements.txt              # Dependencies
+└── README.md                     # Documentation
 ```
 
 ---
